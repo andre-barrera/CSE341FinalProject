@@ -1,9 +1,9 @@
 const { ObjectId } = require("mongodb");
 const mongodb = require("../data/database");
 
-/* =========================
-   GET ALL EVENTS
-========================= */
+
+// GET ALL
+
 const getAll = async (req, res) => {
   // #swagger.tags = ['Events']
   try {
@@ -20,9 +20,8 @@ const getAll = async (req, res) => {
   }
 };
 
-/* =========================
-   GET SINGLE EVENT
-========================= */
+// GET SINGLE
+
 const getSingle = async (req, res) => {
   // #swagger.tags = ['Events']
   try {
@@ -48,9 +47,8 @@ const getSingle = async (req, res) => {
   }
 };
 
-/* =========================
-   CREATE EVENT
-========================= */
+// CREATE 
+
 const createEvent = async (req, res) => {
   // #swagger.tags = ['Events']
   try {
@@ -65,7 +63,6 @@ const createEvent = async (req, res) => {
       createdByUsername
     } = req.body;
 
-    // Required validation
     if (
       !title ||
       !description ||
@@ -81,7 +78,6 @@ const createEvent = async (req, res) => {
       });
     }
 
-    // Type validation
     if (
       typeof title !== "string" ||
       typeof description !== "string" ||
@@ -96,7 +92,6 @@ const createEvent = async (req, res) => {
       });
     }
 
-    // Empty string validation
     if (
       title.trim() === "" ||
       description.trim() === "" ||
@@ -111,7 +106,6 @@ const createEvent = async (req, res) => {
       });
     }
 
-    // Date validation
     if (typeof date !== "string" || isNaN(Date.parse(date))) {
       return res.status(400).json({
         message: "Invalid date format"
@@ -146,9 +140,8 @@ const createEvent = async (req, res) => {
   }
 };
 
-/* =========================
-   UPDATE EVENT
-========================= */
+// UPDATE 
+
 const updateEvent = async (req, res) => {
   // #swagger.tags = ['Events']
   try {
@@ -227,9 +220,8 @@ const updateEvent = async (req, res) => {
   }
 };
 
-/* =========================
-   DELETE EVENT
-========================= */
+//  DELETE
+
 const deleteEvent = async (req, res) => {
   // #swagger.tags = ['Events']
   try {

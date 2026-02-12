@@ -1,9 +1,8 @@
 const { ObjectId } = require("mongodb");
 const mongodb = require("../data/database");
 
-/* =========================
-   GET ALL USERS
-========================= */
+// GET ALL
+
 const getAll = async (req, res) => {
   // #swagger.tags = ["Users"]
   try {
@@ -20,9 +19,9 @@ const getAll = async (req, res) => {
   }
 };
 
-/* =========================
-   GET SINGLE USER
-========================= */
+
+// GET SINGLE
+
 const getSingle = async (req, res) => {
   // #swagger.tags = ["Users"]
   try {
@@ -48,22 +47,20 @@ const getSingle = async (req, res) => {
   }
 };
 
-/* =========================
-   CREATE USER
-========================= */
+
+// CREATE
+
 const createUser = async (req, res) => {
   // #swagger.tags = ["Users"]
   try {
     const { githubId, username, displayName } = req.body;
 
-    // Required validation
     if (!githubId || !username || !displayName) {
       return res.status(400).json({
         message: "githubId, username, and displayName are required"
       });
     }
 
-    // Type validation
     if (
       typeof githubId !== "string" ||
       typeof username !== "string" ||
@@ -74,7 +71,6 @@ const createUser = async (req, res) => {
       });
     }
 
-    // Empty string validation
     if (
       githubId.trim() === "" ||
       username.trim() === "" ||
@@ -108,9 +104,8 @@ const createUser = async (req, res) => {
   }
 };
 
-/* =========================
-   UPDATE USER
-========================= */
+// UPDATE USER
+
 const updateUser = async (req, res) => {
   // #swagger.tags = ["Users"]
   try {
@@ -121,7 +116,6 @@ const updateUser = async (req, res) => {
     const userId = new ObjectId(req.params.id);
     const { githubId, username, displayName } = req.body;
 
-    // Must provide at least one field
     if (!githubId && !username && !displayName) {
       return res.status(400).json({
         message: "At least one field is required to update"
@@ -179,9 +173,9 @@ const updateUser = async (req, res) => {
   }
 };
 
-/* =========================
-   DELETE USER
-========================= */
+S
+// DELETE 
+
 const deleteUser = async (req, res) => {
   // #swagger.tags = ["Users"]
   try {
