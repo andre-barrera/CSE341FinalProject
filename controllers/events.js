@@ -1,7 +1,6 @@
 const { ObjectId } = require("mongodb");
 const mongodb = require("../data/database");
 
-
 // GET ALL
 
 const getAll = async (req, res) => {
