@@ -8,7 +8,7 @@ const getAll = async (req, res) => {
     const registrations = await mongodb
       .getDatabase()
       .db()
-      .collection("registrations")
+      .collection("registration")
       .find()
       .toArray();
 
@@ -31,7 +31,7 @@ const getSingle = async (req, res) => {
     const registration = await mongodb
       .getDatabase()
       .db()
-      .collection("registrations")
+      .collection("registration")
       .findOne({ _id: registrationId });
 
     if (!registration) {
@@ -91,7 +91,7 @@ const createRegistration = async (req, res) => {
     const result = await mongodb
       .getDatabase()
       .db()
-      .collection("registrations")
+      .collection("registration")
       .insertOne(newRegistration);
 
     res.status(201).json({
@@ -146,7 +146,7 @@ const updateRegistration = async (req, res) => {
     const result = await mongodb
       .getDatabase()
       .db()
-      .collection("registrations")
+      .collection("registration")
       .updateOne({ _id: registrationId }, { $set: updates });
 
     if (result.matchedCount === 0) {
@@ -173,7 +173,7 @@ const deleteRegistration = async (req, res) => {
     const result = await mongodb
       .getDatabase()
       .db()
-      .collection("registrations")
+      .collection("registration")
       .deleteOne({ _id: registrationId });
 
     if (result.deletedCount === 0) {
