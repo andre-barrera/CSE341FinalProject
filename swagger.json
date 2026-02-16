@@ -5,10 +5,10 @@
     "description": "API documentation / testing",
     "version": "1.0.0"
   },
-  "host": "localhost:3000",
+  "host": "cse341finalproject-7pwu.onrender.com",
   "basePath": "/",
   "schemes": [
-    "http"
+    "https"
   ],
   "paths": {
     "/": {
