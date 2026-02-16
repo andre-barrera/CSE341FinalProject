@@ -8,7 +8,7 @@ const getAll = async (req, res) => {
     const locations = await mongodb
       .getDatabase()
       .db()
-      .collection("locations")
+      .collection("location")
       .find()
       .toArray();
 
@@ -31,7 +31,7 @@ const getSingle = async (req, res) => {
     const location = await mongodb
       .getDatabase()
       .db()
-      .collection("locations")
+      .collection("location")
       .findOne({ _id: locationId });
 
     if (!location) {
@@ -82,7 +82,7 @@ const createLocation = async (req, res) => {
     const result = await mongodb
       .getDatabase()
       .db()
-      .collection("locations")
+      .collection("location")
       .insertOne(newLocation);
 
     res.status(201).json({
@@ -146,7 +146,7 @@ const updateLocation = async (req, res) => {
     const result = await mongodb
       .getDatabase()
       .db()
-      .collection("locations")
+      .collection("location")
       .updateOne({ _id: locationId }, { $set: updates });
 
     if (result.matchedCount === 0) {
@@ -173,7 +173,7 @@ const deleteLocation = async (req, res) => {
     const result = await mongodb
       .getDatabase()
       .db()
-      .collection("locations")
+      .collection("location")
       .deleteOne({ _id: locationId });
 
     if (result.deletedCount === 0) {
