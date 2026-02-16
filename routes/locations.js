@@ -1,5 +1,6 @@
 const router = require("express").Router();
 const locationsController = require("../controllers/locations");
+const requireAuth = require("../middleware/authenticate");
 
 // GET ALL LOCATIONS
 router.get("/", async (req, res) => {
@@ -20,7 +21,7 @@ router.get("/:id", async (req, res) => {
 });
 
 // CREATE LOCATION
-router.post("/", async (req, res) => {
+router.post("/", requireAuth, async (req, res) => {
   try {
     if (Object.keys(req.body).length === 0) {
       return res.status(400).json({ message: "A body is required to create a location" });
@@ -32,7 +33,7 @@ router.post("/", async (req, res) => {
 });
 
 // UPDATE LOCATION
-router.put("/:id", async (req, res) => {
+router.put("/:id", requireAuth, async (req, res) => {
   try {
     if (Object.keys(req.body).length === 0) {
       return res.status(400).json({ message: "Update information is required" });
@@ -44,7 +45,7 @@ router.put("/:id", async (req, res) => {
 });
 
 // DELETE LOCATION
-router.delete("/:id", async (req, res) => {
+router.delete("/:id", requireAuth, async (req, res) => {
   try {
     if (!req.params.id) {
       return res.status(400).json({ message: "A location ID is required to delete it" });

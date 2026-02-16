@@ -1,5 +1,6 @@
 const router = require("express").Router();
 const usersController = require("../controllers/users");
+const requireAuth = require("../middleware/authenticate");
 
 router.get("/", async (req, res) => {
     try {
@@ -17,7 +18,7 @@ router.get("/:id", async (req, res) => {
     }
 });
 
-router.post("/", async (req, res) => {
+router.post("/", requireAuth, async (req, res) => {
     try {
         if (Object.keys(req.body).length === 0) {
             return res.status(400).json({ message: "The request requires a body"});
@@ -28,7 +29,7 @@ router.post("/", async (req, res) => {
     }
 });
 
-router.put("/:id", async (req, res) => {
+router.put("/:id", requireAuth, async (req, res) => {
     try {
         if(Object.keys(req.body).length === 0) {
             return res.status(400).json({ message: "The update request requires a body" });
@@ -39,7 +40,7 @@ router.put("/:id", async (req, res) => {
     }
 });
 
-router.delete("/:id", async (req, res) => {
+router.delete("/:id", requireAuth, async (req, res) => {
     try {
         if(!req.params.id) {
             return res.status(400).json({ message: "The delete request reqires an ID"});
